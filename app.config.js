@@ -30,7 +30,7 @@ module.exports = {
   splash: {
     image: './assets/splash.png',
     resizeMode: 'contain',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#000',
   },
   assetBundlePatterns: ['**/*'],
   ios: {
@@ -38,7 +38,7 @@ module.exports = {
     bundleIdentifier: EXPO_PUBLIC_BUNDLE_IDENTIFIER_IOS,
     supportsTablet: true,
     infoPlist: {
-      UIViewControllerBasedStatusBarAppearance: true,
+      UIViewControllerBasedStatusBarAppearance: false,
     },
   },
   android: {
@@ -46,7 +46,7 @@ module.exports = {
     versionCode: EXPO_PUBLIC_APP_VERSION_ANDROID,
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#000',
     },
   },
   web: {

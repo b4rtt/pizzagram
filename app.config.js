@@ -5,7 +5,7 @@ require('dotenv').config();
 const {
   EXPO_PUBLIC_APP_NAME,
   EXPO_PUBLIC_APP_SLUG,
-  EXPO_EAS_PROJECT_ID,
+  EXPO_PUBLIC_EAS_PROJECT_ID,
   EXPO_PUBLIC_BUNDLE_IDENTIFIER_ANDROID,
   EXPO_PUBLIC_BUNDLE_IDENTIFIER_IOS,
   EXPO_PUBLIC_FONTS,
@@ -52,6 +52,12 @@ module.exports = {
   web: {
     favicon: './assets/favicon.png',
   },
+  updates: {
+    url: 'https://u.expo.dev/' + EXPO_PUBLIC_EAS_PROJECT_ID,
+  },
+  runtimeVersion: {
+    policy: 'appVersion',
+  },
   plugins: [
     [
       'expo-font',
@@ -62,7 +68,7 @@ module.exports = {
   ],
   extra: {
     eas: {
-      projectId: EXPO_EAS_PROJECT_ID,
+      projectId: EXPO_PUBLIC_EAS_PROJECT_ID,
     },
   },
 };

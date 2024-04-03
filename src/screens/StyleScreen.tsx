@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useAtom } from 'jotai';
+
+import { recipeAtom } from '@/atoms/recipe';
 import { Button } from '@/components/Button';
 import { TScreenProps } from '@/utils/navigation';
+import { recipes } from '@/utils/recipes';
 
 export const StyleScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
+  const [recipe, setRecipe] = useAtom(recipeAtom);
+
   return (
     <View
       style={{
@@ -13,26 +19,17 @@ export const StyleScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
         alignItems: 'center',
       }}
     >
-      <Button
-        onPress={() => navigation.navigate('GramsScreen')}
-        text="Neapolitan"
-        style={{ marginBottom: 16 }}
-      />
-      <Button
-        onPress={() => navigation.navigate('GramsScreen')}
-        text="New York"
-        style={{ marginBottom: 16 }}
-      />
-      <Button
-        onPress={() => navigation.navigate('GramsScreen')}
-        text="Sicilian"
-        style={{ marginBottom: 16 }}
-      />
-      <Button
-        onPress={() => navigation.navigate('GramsScreen')}
-        text="Homemade Pan"
-        style={{ marginBottom: 16 }}
-      />
+      {recipes.map((recipeItem) => (
+        <Button
+          onPress={() => {
+            setRecipe({ ...recipe, type: recipeItem.type });
+            navigation.navigate('GramsScreen');
+          }}
+          text={recipeItem.name}
+          style={{ marginBottom: 16 }}
+          key={recipeItem.type}
+        />
+      ))}
     </View>
   );
 };

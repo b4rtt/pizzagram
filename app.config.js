@@ -52,12 +52,6 @@ module.exports = {
   web: {
     favicon: './assets/favicon.png',
   },
-  updates: {
-    url: 'https://u.expo.dev/' + EXPO_PUBLIC_EAS_PROJECT_ID,
-  },
-  runtimeVersion: {
-    policy: 'appVersion',
-  },
   plugins: [
     [
       'expo-font',

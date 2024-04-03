@@ -1,12 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { useAtom } from 'jotai';
+
+import { recipeAtom } from '@/atoms/recipe';
 import { Button } from '@/components/Button';
 import { colors } from '@/theme/colors';
 import { TScreenProps } from '@/utils/navigation';
 
 export const GramsScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
-  const [grams, setGrams] = React.useState<number>(230);
+  const [recipe, setRecipe] = useAtom(recipeAtom);
+
+  const [grams, setGrams] = React.useState<number>(recipe.grams);
   return (
     <View
       style={{
@@ -31,7 +36,10 @@ export const GramsScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
         onChangeText={(text) => setGrams(parseInt(text, 10))}
       />
       <Button
-        onPress={() => navigation.navigate('YeastScreen')}
+        onPress={() => {
+          setRecipe({ ...recipe, grams });
+          navigation.navigate('YeastScreen');
+        }}
         text={`Use ${grams} grams`}
       />
       <Text style={{ marginTop: 30, marginBottom: 6 }}>

@@ -1,12 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { useAtom } from 'jotai';
+
+import { recipeAtom } from '@/atoms/recipe';
 import { Button } from '@/components/Button';
 import { colors } from '@/theme/colors';
 import { TScreenProps } from '@/utils/navigation';
 
 export const CountScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
-  const [count, setCount] = React.useState<number>(0);
+  const [recipe, setRecipe] = useAtom(recipeAtom);
+
+  const [count, setCount] = React.useState<number>(recipe.count);
 
   return (
     <View
@@ -64,7 +69,10 @@ export const CountScreen: React.FC<TScreenProps> = ({ route, navigation }) => {
       </View>
 
       <Button
-        onPress={() => navigation.navigate('RecipeScreen')}
+        onPress={() => {
+          setRecipe({ ...recipe, count });
+          navigation.navigate('RecipeScreen');
+        }}
         text="Generate recipe"
         style={{ marginTop: 30 }}
       />
